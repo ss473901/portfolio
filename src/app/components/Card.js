@@ -1,30 +1,14 @@
 import React from "react";
 import "./Card.css";
-import cardImg from "../../images/card.png";
+import baloon from "../../images/baloon.png";
 
-const Card = () => {
+const Card = ({ children }) => {
   return (
     <>
-      <div className="card__wrapper">
-        <div className="card__container">
-          <div className="card__item">
-            <img src={cardImg} alt="card__img" className="card__img" />
-          </div>
-          <div className="card__item">
-            <img src={cardImg} alt="card__img" className="card__img" />
-          </div>
-          <div className="card__item">
-            <img src={cardImg} alt="card__img" className="card__img" />
-          </div>
-          <div className="card__item">
-            <img src={cardImg} alt="card__img" className="card__img" />
-          </div>
-          <div className="card__item">
-            <img src={cardImg} alt="card__img" className="card__img" />
-          </div>
-          <div className="card__item">
-            <img src={cardImg} alt="card__img" className="card__img" />
-          </div>
+      <div className="card__container">
+        <img src={baloon} alt="card__img" className="card__img" />
+        <div className="card__wrapper">
+          <div className="card__item">{children}</div>
         </div>
       </div>
     </>

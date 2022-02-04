@@ -1,17 +1,17 @@
 import React from "react";
-import "./Footer.css";
+import styles from "./Footer.module.css";
 import town from "../../images/town.png";
 
-const Card = () => {
+const Footer = () => {
   return (
     <>
-      <div className="container">
-        <div className="item">
-          <img src={town} alt="card__img" className="img" />
+      <div className={styles.container}>
+        <div className={styles.item}>
+          <img src={town} alt="card__img" className={styles.img} />
         </div>
       </div>
     </>
   );
 };
 
-export default Card;
+export default Footer;
