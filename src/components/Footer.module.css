@@ -1,0 +1,27 @@
+.footer {
+  display: flex;
+  width: 100vw;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.item {
+  width: 100%;
+}
+
+.img {
+  width: 100%;
+  object-fit: cover;
+  background-size: contain;
+}
+
+.tiledBackground {
+  background-size: 150px;
+  width: 300px;
+  height: 300px;
+  border: 2px solid;
+  color: pink;
+}
