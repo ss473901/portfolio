@@ -1,19 +1,22 @@
 import styled from "styled-components";
-import TaskCard from "../organisms/TaskCard";
+import { Card } from "../Atoms/card/Card";
 
-const Home = () => {
+export const Home = () => {
+  const items = [
+    "テストA",
+    "テストB",
+    "テストC",
+    "テストD",
+    "テストE",
+    "テストF",
+  ];
   return (
     <SContainer>
-      <SCardArea>
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-      </SCardArea>
-      <SCardArea>
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-      </SCardArea>
+      <SWrapper>
+        {items.map((item) => {
+          return <Card key={item}>{item}</Card>;
+        })}
+      </SWrapper>
     </SContainer>
   );
 };
@@ -22,15 +25,15 @@ const SContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  padding: "24px",
+  justifyContent: "space-around",
+  height: "200px",
+  margin: "0 auto",
+
 });
 
-const SCardArea = styled("div")({
-  padding: "40px",
-  width: "100%",
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-  gridGap: "20px",
+const SWrapper = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  flexWrap: "wrap",
 });
-
-export default Home;

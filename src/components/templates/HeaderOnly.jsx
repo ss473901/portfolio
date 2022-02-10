@@ -1,6 +1,6 @@
-import Header from "../Header";
+import { Header } from "../Header";
 
-const HeaderOnly = (props) => {
+export const HeaderOnly = (props) => {
   const { children } = props;
   return (
     <>

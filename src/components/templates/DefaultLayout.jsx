@@ -1,16 +1,25 @@
-import Header from "../Atoms/layout/Header";
-import Footer from "../Atoms/layout/Footer";
+import styled from "styled-components";
+import { Header } from "../Atoms/layout/Header";
+import { Footer } from "../Atoms/layout/Footer";
+import { HeaderImg } from "../Atoms/layout/HeaderImg";
 
-const DefaultLayout = (props) => {
+export const DefaultLayout = (props) => {
   const { children } = props;
 
   return (
-    <>
+    <SRoot>
+      <HeaderImg />
       <Header />
       {children}
       <Footer />
-    </>
+    </SRoot>
   );
 };
 
-export default DefaultLayout;
+const SRoot = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  alignItems: "center",
+  height: "100%",
+});
