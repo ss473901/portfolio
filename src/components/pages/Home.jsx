@@ -1,39 +1,36 @@
 import styled from "styled-components";
-import { Card } from "../Atoms/card/Card";
+import { Nav } from "../atoms/layout/Nav";
+import { Footer } from "../atoms/layout/Footer";
+import { Card } from "../atoms/card/Card";
+import { TextArea } from "../atoms/card/TextArea";
+import { Header } from "../atoms/layout/Header";
+import { Counter } from "../atoms/card/Counter";
 
 export const Home = () => {
-  const items = [
-    "テストA",
-    "テストB",
-    "テストC",
-    "テストD",
-    "テストE",
-    "テストF",
-  ];
   return (
-    <SContainer>
-      <SWrapper>
-        {items.map((item) => {
-          return <Card key={item}>{item}</Card>;
-        })}
-      </SWrapper>
-    </SContainer>
+    <>
+      <Header />
+      <Nav />
+      <SContainer>
+        <Card>
+          <TextArea />
+        </Card>
+        <Card>
+          <Counter />
+        </Card>
+        <Card />
+        <Card />
+      </SContainer>
+      <Footer />
+    </>
   );
 };
 
-const SContainer = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "space-around",
-  height: "200px",
-  margin: "0 auto",
-
-});
-
-const SWrapper = styled("div")({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  flexWrap: "wrap",
-});
+const SContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+`;
