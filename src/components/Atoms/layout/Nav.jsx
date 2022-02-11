@@ -18,4 +18,6 @@ const SLi = styled.li`
   margin: 0 20px;
   text-decoration: underline;
   color: grey;
+  font-weight: bold;
+  font-family: "Rampart One", cursive;
 `;

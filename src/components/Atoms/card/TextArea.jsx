@@ -1,4 +1,3 @@
-import * as React from "react";
 import styled from "styled-components";
 
 export const TextArea = () => {
@@ -17,10 +16,14 @@ const SContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const SLabel = styled.label`
   display: block;
   text-align: left;
   color: grey;
+  font-family: "Lobster", cursive;
+  font-family: "Rampart One", cursive;
+  font-weight: bold;
 `;
 
 const STextarea = styled.textarea`
@@ -31,4 +34,7 @@ const STextarea = styled.textarea`
   width: 270px;
   outline: none;
   resize: none;
+  color: grey;
+  font-family: "Rampart One", cursive;
+  font-weight: bold;
 `;
