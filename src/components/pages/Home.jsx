@@ -5,6 +5,8 @@ import { Card } from "../atoms/card/Card";
 import { TextArea } from "../atoms/card/TextArea";
 import { Header } from "../atoms/layout/Header";
 import { Counter } from "../atoms/card/Counter";
+import { Timer } from "../atoms/card/Timer";
+import { Meditation } from "../atoms/card/Meditation";
 
 export const Home = () => {
   return (
@@ -18,8 +20,12 @@ export const Home = () => {
         <Card>
           <Counter />
         </Card>
-        <Card />
-        <Card />
+        <Card>
+          <Timer />
+        </Card>
+        <Card>
+          <Meditation />
+        </Card>
       </SContainer>
       <Footer />
     </>
