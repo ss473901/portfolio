@@ -63,4 +63,10 @@ const SButton = styled.button`
   border-radius: 999px;
   font-size: 5px;
   border: 1px solid grey;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -ms-filter: "alpha(opacity=70";
+  }
 `;

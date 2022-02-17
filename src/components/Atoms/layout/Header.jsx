@@ -1,18 +1,22 @@
 import styled from "styled-components";
-import img from "../../../images/header2.png";
 
 export const Header = () => {
   return (
-    <>
-      <SImg />
-    </>
+    <SHeader>
+      <SP>HOME</SP>
+      <SP>LOGOUT</SP>
+    </SHeader>
   );
 };
 
-const SImg = styled.div`
-  width: 100vw;
-  height: 120px;
-  background-image: url(${img});
-  background-size: cover;
-  background-position: center;
-`;
+const SHeader = styled("header")({
+  textAlign: "center",
+  padding: "8px 0",
+  display: "flex",
+});
+
+const SP = styled("p")({
+  margin: "0 8px",
+  textDecoration: "underline",
+  color: "grey",
+});

@@ -50,6 +50,12 @@ const STextarea = styled.textarea`
   color: grey;
   font-family: "Rampart One", cursive;
   font-weight: bold;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -ms-filter: "alpha(opacity=70";
+  }
 
   border: 1px green solid;
 `;
