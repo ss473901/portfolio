@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { updateUserProfile } from "../../features/userSlice";
 import { auth, provider, storage } from "../../firebase";
 
 import Avatar from "@mui/material/Avatar";
@@ -20,11 +21,14 @@ import EmailIcon from "@mui/icons-material/Email";
 
 import styles from "./Auth.module.css";
 import { styled } from "@mui/system";
+import { IconButton } from "@mui/material";
+import { AccountCircle } from "@material-ui/icons";
 
 const theme = createTheme();
 
 export const Auth: React.FC = () => {
   const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [avatarImage, setAvatarImage] = useState<File | null>(null);
@@ -37,10 +41,12 @@ export const Auth: React.FC = () => {
     }
   };
 
+  //Email認証
   const signInEmail = async () => {
     await auth.signInWithEmailAndPassword(email, password);
   };
 
+  //登録機能
   const signUpEmail = async () => {
     const authUser = await auth.createUserWithEmailAndPassword(email, password);
     let url = "";
@@ -59,8 +65,15 @@ export const Auth: React.FC = () => {
       displayName: username,
       photoURL: url,
     });
+    dispatch(
+      updateUserProfile({
+        displayName: username,
+        photoUrl: url,
+      })
+    );
   };
 
+  //Google認証
   const signInGoogle = async () => {
     await auth.signInWithPopup(provider).catch((err) => alert(err.message));
   };
@@ -119,6 +132,46 @@ export const Auth: React.FC = () => {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
+              {!isLogin && (
+                <>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="username"
+                    label="Username"
+                    name="username"
+                    autoComplete="username"
+                    autoFocus
+                    value={username}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setUsername(e.target.value);
+                    }}
+                  ></TextField>
+                </>
+              )}
+
+              <Box textAlign="center">
+                <IconButton>
+                  <label>
+                    <AccountCircle
+                      fontSize="large"
+                      className={
+                        avatarImage
+                          ? styles.login_addIconLoaded
+                          : styles.login_addIcon
+                      }
+                    />
+                    <input
+                      className={styles.login_hiddenIcon}
+                      type="file"
+                      onChange={onChangeImageHandler}
+                    />
+                  </label>
+                </IconButton>
+              </Box>
+
               <TextField
                 margin="normal"
                 required
@@ -150,6 +203,11 @@ export const Auth: React.FC = () => {
               />
 
               <Button
+                disabled={
+                  isLogin
+                    ? !email || password.length < 6
+                    : !username || !email || password.length < 6 || !avatarImage
+                }
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
