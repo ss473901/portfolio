@@ -7,23 +7,32 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Modal from "@mui/material/Modal";
 
 import EmailIcon from "@mui/icons-material/Email";
-
 import styles from "./Auth.module.css";
-import { styled } from "@mui/system";
-import { IconButton } from "@mui/material";
 import { AccountCircle } from "@material-ui/icons";
+import SendIcon from "@mui/icons-material/Send";
+import IconButton from "@mui/material/IconButton";
+import CameraIcon from "@mui/icons-material/Camera";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  p: 4,
+  outline: "none",
+  borderRaius: 10,
+};
 const theme = createTheme();
 
 export const Auth: React.FC = () => {
@@ -33,6 +42,23 @@ export const Auth: React.FC = () => {
   const [username, setUsername] = useState("");
   const [avatarImage, setAvatarImage] = useState<File | null>(null);
   const [isLogin, setIsLogin] = useState(true);
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+  const [resetEmail, setResetEmail] = useState("");
+
+  const sendResetEmail = async (e: React.MouseEvent<HTMLElement>) => {
+    await auth
+      .sendPasswordResetEmail(resetEmail)
+      .then(() => {
+        setOpenModal(false);
+        setResetEmail("");
+      })
+      .catch((err) => {
+        alert(err.message);
+        setResetEmail("");
+      });
+  };
 
   const onChangeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files![0]) {
@@ -235,7 +261,9 @@ export const Auth: React.FC = () => {
 
               <Grid container>
                 <Grid item xs>
-                  <span className={styles.login_resert}>Forgot pssword?</span>
+                  <span className={styles.login_reset} onClick={handleOpen}>
+                    Forgot pssword?
+                  </span>
                 </Grid>
                 <Grid item>
                   <span
@@ -252,6 +280,7 @@ export const Auth: React.FC = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 onClick={signInGoogle}
+                startIcon={<CameraIcon />}
               >
                 SignIn with Google
               </Button>
@@ -259,6 +288,31 @@ export const Auth: React.FC = () => {
           </Box>
         </Grid>
       </Grid>
+      s
+      <Modal
+        open={openModal}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className={styles.login_modal}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="email"
+              name="email"
+              label="Reset E-mail"
+              value={resetEmail}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setResetEmail(e.target.value);
+              }}
+            />
+            <IconButton onClick={sendResetEmail}>
+              <SendIcon />
+            </IconButton>
+          </div>
+        </Box>
+      </Modal>
     </ThemeProvider>
   );
 };
