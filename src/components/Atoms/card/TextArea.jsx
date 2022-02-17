@@ -24,8 +24,6 @@ const SContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  border: 1px blue solid;
 `;
 
 const SLabel = styled.label`
@@ -35,8 +33,6 @@ const SLabel = styled.label`
   font-family: "Lobster", cursive;
   font-family: "Rampart One", cursive;
   font-weight: bold;
-
-  border: 1px red solid;
 `;
 
 const STextarea = styled.textarea`
@@ -55,7 +51,6 @@ const STextarea = styled.textarea`
     opacity: 0.7;
     filter: alpha(opacity=70);
     -ms-filter: "alpha(opacity=70";
+    border: 1px gray dashed;
   }
-
-  border: 1px green solid;
 `;

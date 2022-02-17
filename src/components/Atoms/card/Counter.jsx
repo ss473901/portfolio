@@ -37,10 +37,9 @@ const SWrapper = styled.div`
 `;
 
 const SP = styled.p`
+  font-size: 30px;
   color: grey;
   font-weight: bold;
-
-  border: 1px solid red;
 `;
 
 const SContainer = styled.div`
@@ -50,8 +49,6 @@ const SContainer = styled.div`
   justify-content: center;
   height: 60px;
   width: 100%;
-
-  border: 1px solid green;
 `;
 
 const SButton = styled.button`
