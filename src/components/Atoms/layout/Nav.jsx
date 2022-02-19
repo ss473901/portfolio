@@ -3,6 +3,7 @@ import { auth } from "../../../firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../features/userSlice";
 import { Avatar } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const Nav = () => {
   const user = useSelector(selectUser);
@@ -15,7 +16,14 @@ export const Nav = () => {
             await auth.signOut();
           }}
         />
-        <SName>{user.displayName}</SName>
+        <SLink to="/user">
+          <SName>{user.displayName}</SName>
+        </SLink>
+      </SItem>
+      <SItem>
+        <SLink to="/">
+          <SButton>HOME</SButton>
+        </SLink>
       </SItem>
       <SItem>
         <SButton onClick={() => auth.signOut()}>LOGOUT</SButton>
@@ -23,6 +31,10 @@ export const Nav = () => {
     </SContainer>
   );
 };
+
+const SLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const SContainer = styled.div`
   text-align: center;
@@ -35,6 +47,8 @@ const SContainer = styled.div`
 const SItem = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 130px;
 `;
 
 const SName = styled.p`

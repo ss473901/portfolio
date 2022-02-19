@@ -1,24 +1,41 @@
-import * as React from "react";
-import { green } from "@mui/material/colors";
-import Icon from "@mui/material/Icon";
-
+import { useState } from "react";
+import { db } from "../../../firebase";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../features/userSlice";
 import styled from "styled-components";
+import { Button } from "../Button";
 
 export const TextArea = () => {
+  const user = useSelector(selectUser);
+  const [memo, setMemo] = useState("");
+
+  const saveMemo = (e) => {
+    e.preventDefault();
+    db.collection("posts").add({
+      text: memo,
+    });
+  };
+
   return (
     <>
-      <SContainer>
-        <SLabel>MEMO</SLabel>
-        <STextarea />
-        <Icon
-          baseClassName="fas"
-          className="fa-plus-circle"
-          sx={{ color: green[500] }}
-        />
-      </SContainer>
+      <form onSubmit={saveMemo}>
+        <SContainer>
+          <SLabel>Memo</SLabel>
+          <STextarea
+            type="text"
+            autoFocus
+            value={memo}
+            onChange={(e) => setMemo(e.target.value)}
+          />
+          <SContainer>
+            <Button type="submit">SAVE</Button>
+          </SContainer>
+        </SContainer>
+      </form>
     </>
   );
 };
+
 const SContainer = styled.div`
   display: flex;
   flex-direction: column;

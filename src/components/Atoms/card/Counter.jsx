@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { Label } from "../Lbel";
 
 export const Counter = () => {
   const [count, setCount] = useState(0);
@@ -14,6 +15,7 @@ export const Counter = () => {
   return (
     <>
       <SWrapper>
+        <Label>Counter</Label>
         <SP>{count}</SP>
 
         <SContainer>
@@ -32,8 +34,6 @@ const SWrapper = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
-
-  border: 1px solid blue;
 `;
 
 const SP = styled.p`

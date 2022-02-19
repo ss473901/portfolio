@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { Label } from "../Lbel";
 
 export const Meditation = () => {
   return (
     <SContainer>
-      <SP>瞑想</SP>
+      <Label>瞑想</Label>
     </SContainer>
   );
 };
